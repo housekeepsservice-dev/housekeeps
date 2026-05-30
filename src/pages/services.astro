@@ -99,6 +99,13 @@ const services = [
                 class="service-block__visual service-block__visual--photo"
                 loading="lazy"
               />
+            ) : service.id === 'menage' ? (
+              <img
+                src="/images/menage-linge.png"
+                alt="Ménage et linge — préparation du lit par une concierge House Keeps"
+                class="service-block__visual service-block__visual--photo"
+                loading="lazy"
+              />
             ) : (
               <div class="service-block__visual" aria-hidden="true">
                 <span>{service.title}</span>
