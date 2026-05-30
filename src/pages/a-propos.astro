@@ -66,30 +66,6 @@ const team = [
       </div>
     </section>
 
-    <!-- Équipe -->
-    <section class="about-team">
-      <div class="container">
-        <div class="about-team__header">
-          <span class="about-team__label">L\'équipe</span>
-          <h2 class="about-team__title">Vos gardiennes</h2>
-        </div>
-        <div class="about-team__grid">
-          {team.map(member => (
-            <article class="team-card">
-              <div class="team-card__photo" aria-hidden="true">
-                <span>{member.name}</span>
-              </div>
-              <div class="team-card__info">
-                <h3 class="team-card__name">{member.name}</h3>
-                <span class="team-card__role">{member.role}</span>
-                <p class="team-card__bio">{member.bio}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
     <!-- Section valeurs réutilisée -->
     <Values />
 
