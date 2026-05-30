@@ -113,6 +113,13 @@ const services = [
                 class="service-block__visual service-block__visual--photo"
                 loading="lazy"
               />
+            ) : service.id === 'assistance' ? (
+              <img
+                src="/images/assistance-voyageurs.png"
+                alt="Assistance voyageurs — concierge disponible 7j/7 House Keeps"
+                class="service-block__visual service-block__visual--photo"
+                loading="lazy"
+              />
             ) : (
               <div class="service-block__visual" aria-hidden="true">
                 <span>{service.title}</span>
