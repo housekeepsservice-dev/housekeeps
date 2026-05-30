@@ -120,6 +120,13 @@ const services = [
                 class="service-block__visual service-block__visual--photo"
                 loading="lazy"
               />
+            ) : service.id === 'coordination' ? (
+              <img
+                src="/images/coordination-prestataires.png"
+                alt="Coordination prestataires — réunion avec artisans House Keeps"
+                class="service-block__visual service-block__visual--photo"
+                loading="lazy"
+              />
             ) : (
               <div class="service-block__visual" aria-hidden="true">
                 <span>{service.title}</span>
