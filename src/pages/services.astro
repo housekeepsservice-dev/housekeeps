@@ -106,6 +106,13 @@ const services = [
                 class="service-block__visual service-block__visual--photo"
                 loading="lazy"
               />
+            ) : service.id === 'intendance' ? (
+              <img
+                src="/images/intendance.png"
+                alt="Intendance — visite de surveillance avec tablette House Keeps"
+                class="service-block__visual service-block__visual--photo"
+                loading="lazy"
+              />
             ) : (
               <div class="service-block__visual" aria-hidden="true">
                 <span>{service.title}</span>
