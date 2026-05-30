@@ -92,6 +92,13 @@ const services = [
                 class="service-block__visual service-block__visual--photo"
                 loading="lazy"
               />
+            ) : service.id === 'accueil' ? (
+              <img
+                src="/images/accueil-voyageurs.png"
+                alt="Accueil des voyageurs — remise des clés par une concierge House Keeps"
+                class="service-block__visual service-block__visual--photo"
+                loading="lazy"
+              />
             ) : (
               <div class="service-block__visual" aria-hidden="true">
                 <span>{service.title}</span>
