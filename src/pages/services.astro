@@ -85,9 +85,18 @@ const services = [
                 ))}
               </ul>
             </div>
-            <div class="service-block__visual" aria-hidden="true">
-              <span>{service.title}</span>
-            </div>
+            {service.id === 'reservations' ? (
+              <img
+                src="/images/gestion-reservations.png"
+                alt="Tableau de bord de gestion des réservations House Keeps avec vue sur la mer"
+                class="service-block__visual service-block__visual--photo"
+                loading="lazy"
+              />
+            ) : (
+              <div class="service-block__visual" aria-hidden="true">
+                <span>{service.title}</span>
+              </div>
+            )}
           </article>
         ))}
       </div>
@@ -210,6 +219,13 @@ const services = [
     font-size: 0.85rem;
     color: var(--text-muted);
     border: 1px solid var(--outline-subtle);
+  }
+
+  .service-block__visual--photo {
+    object-fit: cover;
+    width: 100%;
+    height: 320px;
+    border: none;
   }
 
   /* CTA final */
