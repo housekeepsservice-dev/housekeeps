@@ -1,0 +1,269 @@
+---
+/* Page à propos — équipe, histoire, valeurs */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Values from '../components/sections/Values.astro';
+
+const team = [
+  {
+    name: 'Sophie',
+    role: 'Co-fondatrice & Directrice',
+    bio: 'Passionnée par la Côte Atlantique et l\'hospitalité, Sophie a fondé House Keeps après avoir constaté le manque de services de conciergerie locaux de qualité.',
+  },
+  {
+    name: 'Marie',
+    role: 'Co-fondatrice & Responsable opérations',
+    bio: 'Marie coordonne l\'ensemble des interventions et veille à la qualité de chaque prestation. Son sens du détail garantit des standards hôteliers pour chaque bien.',
+  },
+];
+---
+
+<BaseLayout
+  title="Notre Équipe — House Keeps"
+  description="Rencontrez l'équipe House Keeps, vos gardiennes de la Côte Atlantique. Une équipe locale, réactive et passionnée."
+>
+  <Header />
+  <main id="main-content">
+
+    <!-- Hero mini -->
+    <section class="page-hero" aria-label="En-tête de page">
+      <div class="container">
+        <span class="page-hero__eyebrow">Qui sommes-nous</span>
+        <h1 class="page-hero__title">Notre Équipe</h1>
+        <p class="page-hero__desc">
+          Des gardiennes locales qui connaissent la Côte Atlantique comme leur poche.
+        </p>
+      </div>
+    </section>
+
+    <!-- Histoire -->
+    <section class="about-story">
+      <div class="container">
+        <div class="about-story__grid">
+          <div class="about-story__text">
+            <span class="about-story__label">Notre histoire</span>
+            <h2 class="about-story__title">Nées de la côte, pour la côte</h2>
+            <p class="about-story__desc">
+              House Keeps est née d\'une conviction simple : les propriétaires de locations saisonnières
+              méritent un service de conciergerie à la hauteur de leurs biens et de leurs attentes.
+            </p>
+            <p class="about-story__desc">
+              Fondée par deux passionnées de la Côte Atlantique, notre agence propose un accompagnement
+              humain, local et transparent. Nous connaissons chaque recoin de Bordeaux, du Bassin
+              d\'Arcachon et de Lacanau — et nous mettons cette connaissance au service de votre bien.
+            </p>
+            <p class="about-story__desc">
+              Depuis notre création, nous avons accompagné plus de 50 propriétaires dans la valorisation
+              et la gestion de leur patrimoine immobilier. Chaque bien est unique, chaque propriétaire
+              est différent — c\'est pourquoi nous personnalisons chacune de nos interventions.
+            </p>
+          </div>
+          <div class="about-story__visual" aria-hidden="true">
+            <span>Photo équipe</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Équipe -->
+    <section class="about-team">
+      <div class="container">
+        <div class="about-team__header">
+          <span class="about-team__label">L\'équipe</span>
+          <h2 class="about-team__title">Vos gardiennes</h2>
+        </div>
+        <div class="about-team__grid">
+          {team.map(member => (
+            <article class="team-card">
+              <div class="team-card__photo" aria-hidden="true">
+                <span>{member.name}</span>
+              </div>
+              <div class="team-card__info">
+                <h3 class="team-card__name">{member.name}</h3>
+                <span class="team-card__role">{member.role}</span>
+                <p class="team-card__bio">{member.bio}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Section valeurs réutilisée -->
+    <Values />
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background-color: var(--navy);
+    padding: 6rem 0 4rem;
+    text-align: center;
+  }
+
+  .page-hero__eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+
+  .page-hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .page-hero__desc {
+    color: rgba(255,255,255,0.6);
+    max-width: 46ch;
+    margin-inline: auto;
+  }
+
+  /* Histoire */
+  .about-story {
+    background-color: var(--sand);
+    padding: var(--section-pad);
+  }
+
+  .about-story__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .about-story__grid {
+      grid-template-columns: 1.2fr 1fr;
+    }
+  }
+
+  .about-story__label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .about-story__title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-story__desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .about-story__visual {
+    background-color: var(--sand-dark);
+    border-radius: var(--radius-md);
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border: 1px solid var(--outline-subtle);
+  }
+
+  /* Équipe */
+  .about-team {
+    background-color: var(--sand-mid);
+    padding: var(--section-pad);
+  }
+
+  .about-team__header {
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  .about-team__label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .about-team__title {
+    font-family: var(--font-heading);
+    color: var(--navy);
+  }
+
+  .about-team__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 860px;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 640px) {
+    .about-team__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .team-card {
+    background-color: var(--sand);
+    border: 1px solid var(--outline-subtle);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .team-card__photo {
+    background-color: var(--sand-dark);
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .team-card__info {
+    padding: 1.5rem;
+  }
+
+  .team-card__name {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--navy);
+    margin-bottom: 0.25rem;
+  }
+
+  .team-card__role {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  .team-card__bio {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+</style>

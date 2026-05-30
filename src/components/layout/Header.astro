@@ -1,0 +1,223 @@
+---
+/* Navigation principale — sticky, fond sable semi-transparent */
+const navLinks = [
+  { href: '/services', label: 'Services' },
+  { href: '/#formules', label: 'Formules' },
+  { href: '/tarifs', label: 'Tarifs' },
+  { href: '/a-propos', label: 'Valeurs' },
+];
+---
+
+<header class="header" role="banner">
+  <div class="header__inner container">
+    <!-- Logo placeholder texte -->
+    <a href="/" class="header__logo" aria-label="House Keeps — Accueil">
+      House Keeps
+    </a>
+
+    <!-- Navigation desktop -->
+    <nav class="header__nav" aria-label="Navigation principale">
+      <ul class="header__links">
+        {navLinks.map(link => (
+          <li>
+            <a href={link.href} class="header__link">{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- CTA -->
+    <a href="/contact" class="header__cta" aria-label="Nous contacter">
+      Contactez-nous
+    </a>
+
+    <!-- Bouton menu mobile -->
+    <button
+      class="header__burger"
+      aria-label="Ouvrir le menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      id="burger-btn"
+    >
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+        <line x1="2" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="2" y1="11" x2="20" y2="11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="2" y1="16" x2="20" y2="16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menu mobile -->
+  <div class="header__mobile" id="mobile-menu" aria-hidden="true">
+    <nav aria-label="Menu mobile">
+      <ul class="header__mobile-links">
+        {navLinks.map(link => (
+          <li>
+            <a href={link.href} class="header__mobile-link">{link.label}</a>
+          </li>
+        ))}
+        <li>
+          <a href="/contact" class="header__mobile-cta">Contactez-nous</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  /* Gestion du menu mobile */
+  const btn = document.getElementById('burger-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', String(isOpen));
+    menu?.setAttribute('aria-hidden', String(!isOpen));
+  });
+
+  /* Fermer le menu au clic sur un lien */
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('is-open');
+      btn?.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+    });
+  });
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(251, 249, 248, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--outline-subtle);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 4rem;
+  }
+
+  /* Logo */
+  .header__logo {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+
+  /* Liens nav */
+  .header__nav {
+    flex: 1;
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .header__nav {
+      display: block;
+    }
+  }
+
+  .header__links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .header__link {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+
+  .header__link:hover {
+    color: var(--navy);
+  }
+
+  /* CTA bouton */
+  .header__cta {
+    display: none;
+    padding: 0.5rem 1.25rem;
+    background-color: var(--navy);
+    color: var(--sand);
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .header__cta:hover {
+    background-color: var(--navy-mid);
+  }
+
+  @media (min-width: 768px) {
+    .header__cta {
+      display: inline-flex;
+    }
+  }
+
+  /* Burger mobile */
+  .header__burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--navy);
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .header__burger {
+      display: none;
+    }
+  }
+
+  /* Menu mobile déroulant */
+  .header__mobile {
+    display: none;
+    background-color: var(--sand);
+    border-top: 1px solid var(--outline-subtle);
+  }
+
+  .header__mobile.is-open {
+    display: block;
+  }
+
+  .header__mobile-links {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.5rem 1.5rem;
+    gap: 0.25rem;
+  }
+
+  .header__mobile-link {
+    display: block;
+    padding: 0.6rem 0;
+    font-size: 1rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--outline-subtle);
+  }
+
+  .header__mobile-cta {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.65rem 1.5rem;
+    background-color: var(--navy);
+    color: var(--sand);
+    font-size: 0.9rem;
+    border-radius: var(--radius-sm);
+  }
+</style>

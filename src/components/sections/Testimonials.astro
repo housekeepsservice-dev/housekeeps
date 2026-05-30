@@ -1,0 +1,140 @@
+---
+/* Section témoignages — fond blanc, 2 colonnes */
+import SectionHeader from '../ui/SectionHeader.astro';
+
+const testimonials = [
+  {
+    quote: 'Une équipe réactive et professionnelle. Mon appartement est géré avec soin, mes locataires repartent toujours enchantés.',
+    author: 'Sophie M.',
+    role: 'Propriétaire — Cap Ferret',
+    rating: 5,
+  },
+  {
+    quote: 'Depuis que j\'ai confié ma villa à House Keeps, mon taux d\'occupation a augmenté de 30%. Un suivi transparent et une vraie tranquillité d\'esprit.',
+    author: 'Laurent D.',
+    role: 'Propriétaire — Lacanau Océan',
+    rating: 5,
+  },
+];
+---
+
+<section class="testimonials" aria-labelledby="testimonials-title">
+  <div class="container">
+    <SectionHeader
+      label="Ils nous font confiance"
+      title="Ce que disent nos propriétaires"
+      centered={true}
+    />
+    <div class="testimonials__grid">
+      {testimonials.map(t => (
+        <blockquote class="testimonials__card">
+          <!-- Étoiles -->
+          <div class="testimonials__stars" aria-label={`${t.rating} étoiles sur 5`}>
+            {Array.from({ length: t.rating }).map(() => (
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 1.5l1.85 3.75 4.15.6-3 2.92.71 4.13L8 10.77l-3.71 1.95.71-4.13-3-2.92 4.15-.6L8 1.5z" fill="currentColor"/>
+              </svg>
+            ))}
+          </div>
+
+          <!-- Citation -->
+          <p class="testimonials__quote">« {t.quote} »</p>
+
+          <!-- Auteur -->
+          <footer class="testimonials__author">
+            <div class="testimonials__avatar" aria-hidden="true">
+              {t.author.charAt(0)}
+            </div>
+            <div>
+              <cite class="testimonials__name">{t.author}</cite>
+              <span class="testimonials__role">{t.role}</span>
+            </div>
+          </footer>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    background-color: #fff;
+    padding: var(--section-pad);
+  }
+
+  .testimonials__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .testimonials__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .testimonials__card {
+    background-color: var(--sand-mid);
+    border: 1px solid var(--outline-subtle);
+    border-radius: var(--radius-md);
+    padding: 2rem 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  /* Étoiles dorées */
+  .testimonials__stars {
+    display: flex;
+    gap: 0.2rem;
+    color: var(--gold);
+  }
+
+  /* Citation */
+  .testimonials__quote {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--navy);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  /* Auteur */
+  .testimonials__author {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--outline-subtle);
+  }
+
+  .testimonials__avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--navy);
+    color: var(--gold-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .testimonials__name {
+    display: block;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--navy);
+  }
+
+  .testimonials__role {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+</style>

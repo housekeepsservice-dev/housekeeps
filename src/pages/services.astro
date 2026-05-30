@@ -1,0 +1,233 @@
+---
+/* Page services */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Button from '../components/ui/Button.astro';
+
+const services = [
+  {
+    id: 'reservations',
+    title: 'Gestion des réservations',
+    desc: 'Nous prenons en charge l\'intégralité de la gestion de vos annonces sur les plateformes (Airbnb, Booking.com, etc.). Optimisation des tarifs, gestion du calendrier de disponibilité, réponse rapide aux demandes de réservation et communication professionnelle avec les voyageurs.',
+    details: ['Optimisation de votre annonce', 'Gestion multiplateforme', 'Tarification dynamique', 'Réponse sous 1h aux demandes'],
+  },
+  {
+    id: 'accueil',
+    title: 'Accueil des voyageurs',
+    desc: 'Un accueil chaleureux et personnalisé pour chaque séjour. Nous assurons la remise des clés, la présentation du logement et des équipements, et nous restons disponibles pour répondre aux questions des voyageurs pendant leur séjour.',
+    details: ['Check-in personnalisé', 'Remise des clés en main', 'Présentation du logement', 'Check-out et état des lieux'],
+  },
+  {
+    id: 'menage',
+    title: 'Ménage & linge',
+    desc: 'Un nettoyage professionnel entre chaque séjour pour garantir des standards hôteliers. Nous gérons également le linge de maison (draps, serviettes) et le réapprovisionnement des consommables.',
+    details: ['Nettoyage complet post-séjour', 'Gestion du linge de maison', 'Réapprovisionnement consommables', 'Contrôle qualité systématique'],
+  },
+  {
+    id: 'intendance',
+    title: 'Intendance',
+    desc: 'Nous assurons la surveillance régulière de votre bien pour détecter et gérer rapidement tout incident. Petits travaux, coordination des artisans et suivi des interventions : votre bien est entre de bonnes mains.',
+    details: ['Visites de surveillance', 'Gestion des petits travaux', 'Coordination des prestataires', 'Rapport photos régulier'],
+  },
+  {
+    id: 'assistance',
+    title: 'Assistance voyageurs',
+    desc: 'Support 7j/7 pour vos locataires en cas de question, problème technique ou incident pendant leur séjour. Nous gérons les situations d\'urgence et assurons la satisfaction de vos voyageurs.',
+    details: ['Disponibilité 7j/7', 'Gestion des urgences', 'Support multilingue', 'Satisfaction garantie'],
+  },
+  {
+    id: 'coordination',
+    title: 'Coordination prestataires',
+    desc: 'Nous coordonnons l\'ensemble des intervenants nécessaires à l\'entretien de votre bien : plombiers, électriciens, jardiniers, piscinistes. Nous obtenons les devis, planifions et supervisons les interventions.',
+    details: ['Sélection des prestataires', 'Demande de devis', 'Supervision des travaux', 'Compte-rendu d\'intervention'],
+  },
+];
+---
+
+<BaseLayout
+  title="Nos Services — House Keeps"
+  description="Check-in, ménage, intendance : découvrez toutes nos prestations de conciergerie pour votre location saisonnière."
+>
+  <Header />
+  <main id="main-content">
+
+    <!-- Hero mini -->
+    <section class="page-hero" aria-label="En-tête de page">
+      <div class="container">
+        <span class="page-hero__eyebrow">Ce que nous faisons</span>
+        <h1 class="page-hero__title">Nos Services</h1>
+        <p class="page-hero__desc">
+          Un accompagnement complet pour libérer votre temps et maximiser vos revenus.
+        </p>
+      </div>
+    </section>
+
+    <!-- Services détaillés -->
+    <section class="services-detail">
+      <div class="container">
+        {services.map((service, i) => (
+          <article
+            class:list={['service-block', { 'service-block--reverse': i % 2 !== 0 }]}
+            id={service.id}
+          >
+            <div class="service-block__text">
+              <h2 class="service-block__title">{service.title}</h2>
+              <p class="service-block__desc">{service.desc}</p>
+              <ul class="service-block__list">
+                {service.details.map(d => (
+                  <li class="service-block__item">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    {d}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="service-block__visual" aria-hidden="true">
+              <span>{service.title}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA vers contact -->
+    <section class="services-cta">
+      <div class="container">
+        <h2 class="services-cta__title">Prêt à nous confier votre bien&nbsp;?</h2>
+        <p class="services-cta__desc">Contactez-nous pour un échange personnalisé et sans engagement.</p>
+        <Button href="/contact" label="Nous contacter" variant="primary" />
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* Hero mini navy */
+  .page-hero {
+    background-color: var(--navy);
+    padding: 6rem 0 4rem;
+    text-align: center;
+  }
+
+  .page-hero__eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+
+  .page-hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .page-hero__desc {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    max-width: 46ch;
+    margin-inline: auto;
+  }
+
+  /* Services alternés */
+  .services-detail {
+    padding: 5rem 0;
+    background-color: var(--sand);
+  }
+
+  .service-block {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 3.5rem 0;
+    border-bottom: 1px solid var(--outline-subtle);
+  }
+
+  .service-block:last-child {
+    border-bottom: none;
+  }
+
+  @media (min-width: 768px) {
+    .service-block {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+    .service-block--reverse .service-block__text { order: 2; }
+    .service-block--reverse .service-block__visual { order: 1; }
+  }
+
+  .service-block__title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  .service-block__desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-block__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .service-block__item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    color: var(--text);
+  }
+
+  .service-block__item svg {
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* Visuel placeholder */
+  .service-block__visual {
+    background-color: var(--sand-dark);
+    border-radius: var(--radius-md);
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border: 1px solid var(--outline-subtle);
+  }
+
+  /* CTA final */
+  .services-cta {
+    background-color: var(--navy-mid);
+    padding: 5rem 0;
+    text-align: center;
+  }
+
+  .services-cta__title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  .services-cta__desc {
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 2rem;
+  }
+</style>

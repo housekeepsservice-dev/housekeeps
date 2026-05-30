@@ -1,0 +1,153 @@
+---
+/* Page mentions légales */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<BaseLayout
+  title="Mentions Légales — House Keeps"
+  description="Mentions légales, politique de confidentialité et conditions d'utilisation du site House Keeps."
+>
+  <Header />
+  <main id="main-content">
+
+    <section class="page-hero" aria-label="En-tête de page">
+      <div class="container">
+        <h1 class="page-hero__title">Mentions légales</h1>
+      </div>
+    </section>
+
+    <section class="legal">
+      <div class="container">
+        <div class="legal__content">
+
+          <article class="legal__section">
+            <h2>1. Éditeur du site</h2>
+            <p>
+              Le présent site web est édité par la société <strong>House Keeps</strong>,
+              conciergerie de locations saisonnières.<br />
+              Email : <a href="mailto:housekeeps.service@gmail.com">housekeeps.service@gmail.com</a><br />
+              Téléphone : <a href="tel:+33660990758">+33 6 60 99 07 58</a>
+            </p>
+          </article>
+
+          <article class="legal__section">
+            <h2>2. Hébergement</h2>
+            <p>
+              Ce site est hébergé par <strong>Vercel Inc.</strong><br />
+              440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.
+            </p>
+          </article>
+
+          <article class="legal__section">
+            <h2>3. Propriété intellectuelle</h2>
+            <p>
+              L'ensemble des éléments constituant ce site (textes, graphismes, logiciels, photographies,
+              images, sons, plans, noms, logos, marques) sont la propriété exclusive de House Keeps ou
+              de ses partenaires. Toute reproduction, représentation, modification, publication ou
+              adaptation de tout ou partie des éléments du site est interdite sans autorisation écrite.
+            </p>
+          </article>
+
+          <article class="legal__section">
+            <h2>4. Protection des données personnelles</h2>
+            <p>
+              Les informations recueillies via le formulaire de contact sont utilisées exclusivement
+              pour répondre à vos demandes et vous contacter. Conformément au Règlement Général sur la
+              Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification et de
+              suppression de vos données.
+            </p>
+            <p>
+              Pour exercer vos droits, contactez-nous à :
+              <a href="mailto:housekeeps.service@gmail.com">housekeeps.service@gmail.com</a>
+            </p>
+          </article>
+
+          <article class="legal__section">
+            <h2>5. Cookies</h2>
+            <p>
+              Ce site n'utilise pas de cookies de traçage ou d'analyse. Aucune donnée n'est collectée
+              à des fins publicitaires ou commerciales sans votre consentement explicite.
+            </p>
+          </article>
+
+          <article class="legal__section">
+            <h2>6. Responsabilité</h2>
+            <p>
+              House Keeps ne saurait être tenu responsable des dommages directs ou indirects causés
+              au matériel de l'utilisateur lors de l'accès au site, résultant soit de l'utilisation
+              d'un matériel ne répondant pas aux spécifications, soit de l'apparition d'un bug ou
+              d'une incompatibilité.
+            </p>
+          </article>
+
+          <article class="legal__section">
+            <h2>7. Loi applicable</h2>
+            <p>
+              Le présent site et ses mentions légales sont régis par le droit français. En cas de
+              litige, les tribunaux français seront seuls compétents.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background-color: var(--navy);
+    padding: 5rem 0 3rem;
+  }
+
+  .page-hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: #fff;
+  }
+
+  .legal {
+    background-color: var(--sand);
+    padding: 4rem 0 6rem;
+  }
+
+  .legal__content {
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .legal__section h2 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+
+  .legal__section p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal__section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal__section a {
+    color: var(--gold);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.2s;
+  }
+
+  .legal__section a:hover {
+    text-decoration-color: var(--gold);
+  }
+</style>

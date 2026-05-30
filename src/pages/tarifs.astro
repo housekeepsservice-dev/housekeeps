@@ -1,0 +1,202 @@
+---
+/* Page tarifs — reprend Formules + FAQ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Formules from '../components/sections/Formules.astro';
+import Button from '../components/ui/Button.astro';
+
+const faq = [
+  {
+    q: 'Puis-je changer de formule en cours d\'année&nbsp;?',
+    a: 'Oui, vous pouvez passer d\'une formule à l\'autre avec un préavis d\'un mois. Nous adaptons notre accompagnement à l\'évolution de vos besoins.',
+  },
+  {
+    q: 'Y a-t-il des frais d\'entrée ou des coûts cachés&nbsp;?',
+    a: 'Aucun frais d\'entrée ni coût caché. Pour la formule Gestion complète, vous ne payez que le pourcentage sur les revenus réellement générés. Transparence totale.',
+  },
+  {
+    q: 'Que comprend la visite mensuelle pour la Résidence secondaire&nbsp;?',
+    a: 'Chaque visite comprend une inspection complète du bien (intérieur et extérieur), l\'aération des pièces, le relevé des compteurs, et l\'envoi d\'un rapport photos complet au propriétaire.',
+  },
+];
+---
+
+<BaseLayout
+  title="Formules & Tarifs — House Keeps"
+  description="À la carte, gestion complète ou résidence secondaire : choisissez la formule adaptée à votre bien sur la Côte Atlantique."
+>
+  <Header />
+  <main id="main-content">
+
+    <!-- Hero mini -->
+    <section class="page-hero" aria-label="En-tête de page">
+      <div class="container">
+        <span class="page-hero__eyebrow">Nos offres</span>
+        <h1 class="page-hero__title">Formules & Tarifs</h1>
+        <p class="page-hero__desc">
+          Des formules transparentes pour chaque situation. Sans frais cachés.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section formules -->
+    <Formules />
+
+    <!-- FAQ -->
+    <section class="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="faq__header">
+          <span class="faq__eyebrow">Questions fréquentes</span>
+          <h2 class="faq__title" id="faq-title">Vos questions, nos réponses</h2>
+        </div>
+        <div class="faq__list">
+          {faq.map(item => (
+            <details class="faq__item">
+              <summary class="faq__question" set:html={item.q} />
+              <p class="faq__answer">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA devis -->
+    <section class="tarifs-cta">
+      <div class="container">
+        <h2 class="tarifs-cta__title">Besoin d'un devis personnalisé&nbsp;?</h2>
+        <p class="tarifs-cta__desc">
+          Chaque bien est unique. Parlons de votre situation pour trouver la formule parfaite.
+        </p>
+        <Button href="/contact" label="Demander un devis gratuit" variant="primary" />
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background-color: var(--navy);
+    padding: 6rem 0 4rem;
+    text-align: center;
+  }
+
+  .page-hero__eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+
+  .page-hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .page-hero__desc {
+    color: rgba(255,255,255,0.6);
+    max-width: 46ch;
+    margin-inline: auto;
+  }
+
+  /* FAQ */
+  .faq {
+    background-color: var(--sand-mid);
+    padding: var(--section-pad);
+  }
+
+  .faq__header {
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  .faq__eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .faq__title {
+    font-family: var(--font-heading);
+    color: var(--navy);
+  }
+
+  .faq__list {
+    max-width: 720px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq__item {
+    border-bottom: 1px solid var(--outline-subtle);
+  }
+
+  .faq__question {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--navy);
+    padding: 1.25rem 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .faq__question::-webkit-details-marker { display: none; }
+
+  .faq__question::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    line-height: 1;
+    transition: transform 0.2s;
+  }
+
+  details[open] .faq__question::after {
+    transform: rotate(45deg);
+  }
+
+  .faq__answer {
+    padding: 0 0 1.25rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* CTA */
+  .tarifs-cta {
+    background-color: var(--sand);
+    padding: 5rem 0;
+    text-align: center;
+    border-top: 1px solid var(--outline-subtle);
+  }
+
+  .tarifs-cta__title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+
+  .tarifs-cta__desc {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+</style>

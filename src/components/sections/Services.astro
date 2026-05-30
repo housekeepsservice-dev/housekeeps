@@ -1,0 +1,146 @@
+---
+/* Section services — grille 3×2, fond sand */
+import SectionHeader from '../ui/SectionHeader.astro';
+
+const services = [
+  {
+    id: 'reservations',
+    title: 'Gestion des réservations',
+    desc: 'Optimisation de votre annonce, gestion du calendrier et communication avec les voyageurs.',
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <rect x="3" y="5" width="22" height="20" rx="2" stroke="currentColor" stroke-width="1.4"/>
+      <line x1="3" y1="11" x2="25" y2="11" stroke="currentColor" stroke-width="1.4"/>
+      <line x1="9" y1="3" x2="9" y2="7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="19" y1="3" x2="19" y2="7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <rect x="7" y="15" width="4" height="4" rx="1" stroke="currentColor" stroke-width="1.2"/>
+      <rect x="17" y="15" width="4" height="4" rx="1" stroke="currentColor" stroke-width="1.2"/>
+    </svg>`,
+  },
+  {
+    id: 'accueil',
+    title: 'Accueil des voyageurs',
+    desc: 'Check-in personnalisé, remise des clés et présentation du logement à votre place.',
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <path d="M4 16L14 7l10 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 14v9h5v-5h4v5h5v-9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`,
+  },
+  {
+    id: 'menage',
+    title: 'Ménage & linge',
+    desc: 'Nettoyage professionnel entre chaque séjour, gestion du linge et réapprovisionnement.',
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <rect x="4" y="4" width="20" height="20" rx="2" stroke="currentColor" stroke-width="1.4"/>
+      <line x1="8" y1="9" x2="20" y2="9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="8" y1="14" x2="20" y2="14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="8" y1="19" x2="14" y2="19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>`,
+  },
+  {
+    id: 'intendance',
+    title: 'Intendance',
+    desc: 'Surveillance régulière, gestion des petits travaux et entretien général de votre bien.',
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <path d="M14 4l10 4v8c0 6-4 10-10 12C8 26 4 22 4 16V8l10-4z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+    </svg>`,
+  },
+  {
+    id: 'assistance',
+    title: 'Assistance voyageurs',
+    desc: 'Support 7j/7 pour vos locataires en cas de question ou d\'incident pendant leur séjour.',
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <path d="M5 7h18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H8l-5 3V9a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+    </svg>`,
+  },
+  {
+    id: 'coordination',
+    title: 'Coordination prestataires',
+    desc: 'Organisation et suivi des interventions : plombier, électricien, jardinier et plus encore.',
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <circle cx="14" cy="14" r="4" stroke="currentColor" stroke-width="1.4"/>
+      <path d="M14 4v3M14 21v3M4 14h3M21 14h3M6.34 6.34l2.12 2.12M19.54 19.54l2.12 2.12M6.34 21.66l2.12-2.12M19.54 8.46l2.12-2.12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>`,
+  },
+];
+---
+
+<section class="services" id="services" aria-labelledby="services-title">
+  <div class="container">
+    <SectionHeader
+      label="Ce que nous faisons"
+      title="Nos prestations"
+    />
+    <div class="services__grid">
+      {services.map(service => (
+        <article class="services__card" id={service.id}>
+          <div class="services__icon" set:html={service.icon} />
+          <h3 class="services__title">{service.title}</h3>
+          <p class="services__desc">{service.desc}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background-color: var(--sand);
+    padding: var(--section-pad);
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .services__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .services__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .services__card {
+    background-color: #fff;
+    border: 1px solid var(--outline-subtle);
+    border-radius: var(--radius-md);
+    padding: 2rem 1.75rem;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .services__card:hover {
+    transform: translateY(-2px);
+    border-color: var(--gold-mid);
+  }
+
+  .services__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--outline-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .services__title {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin-bottom: 0.6rem;
+  }
+
+  .services__desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+</style>

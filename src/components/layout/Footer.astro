@@ -1,0 +1,230 @@
+---
+/* Pied de page — 3 colonnes, fond navy */
+const servicesLinks = [
+  { href: '/services#reservations', label: 'Gestion des réservations' },
+  { href: '/services#accueil', label: 'Accueil des voyageurs' },
+  { href: '/services#menage', label: 'Ménage & linge' },
+  { href: '/services#intendance', label: 'Intendance' },
+  { href: '/services#assistance', label: 'Assistance voyageurs' },
+];
+
+const zones = [
+  'Bordeaux',
+  'Bassin d\'Arcachon',
+  'Lacanau',
+  'Côte Atlantique',
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="footer__inner container">
+    <div class="footer__grid">
+
+      <!-- Colonne 1 : Logo + tagline -->
+      <div class="footer__col footer__col--brand">
+        <a href="/" class="footer__logo" aria-label="House Keeps — Accueil">
+          House Keeps
+        </a>
+        <p class="footer__tagline">Les gardiennes de vos maisons</p>
+        <p class="footer__desc">
+          Conciergerie locale pour locations saisonnières sur la Côte Atlantique.
+          Sérénité, confiance et transparence.
+        </p>
+        <div class="footer__contact">
+          <a href="tel:+33660990758" class="footer__contact-link">+33 6 60 99 07 58</a>
+          <a href="mailto:housekeeps.service@gmail.com" class="footer__contact-link">
+            housekeeps.service@gmail.com
+          </a>
+        </div>
+      </div>
+
+      <!-- Colonne 2 : Services -->
+      <div class="footer__col">
+        <h3 class="footer__heading">Services</h3>
+        <ul class="footer__list">
+          {servicesLinks.map(link => (
+            <li>
+              <a href={link.href} class="footer__link">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Colonne 3 : Zones -->
+      <div class="footer__col">
+        <h3 class="footer__heading">Nos zones</h3>
+        <ul class="footer__list">
+          {zones.map(zone => (
+            <li class="footer__zone">{zone}</li>
+          ))}
+        </ul>
+        <div class="footer__legal-links">
+          <a href="/mentions-legales" class="footer__link">Mentions légales</a>
+          <a href="/contact" class="footer__link">Contact</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bas du footer -->
+    <div class="footer__bottom">
+      <p class="footer__copyright">
+        © {year} House Keeps — Tous droits réservés
+      </p>
+      <p class="footer__slogan">
+        Votre tranquillité, notre engagement. ♡
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--navy);
+    color: rgba(255,255,255,0.7);
+    padding: 4rem 0 0;
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  @media (min-width: 640px) {
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .footer__col--brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer__grid {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+    .footer__col--brand {
+      grid-column: auto;
+    }
+  }
+
+  /* Logo */
+  .footer__logo {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Tagline italique or */
+  .footer__tagline {
+    font-style: italic;
+    color: var(--gold-light);
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .footer__desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+    max-width: 30ch;
+  }
+
+  .footer__contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .footer__contact-link {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    transition: color 0.2s;
+  }
+
+  .footer__contact-link:hover {
+    color: var(--gold-light);
+  }
+
+  /* Titres colonnes */
+  .footer__heading {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer__link {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.6);
+    transition: color 0.2s;
+  }
+
+  .footer__link:hover {
+    color: var(--gold-light);
+  }
+
+  .footer__zone {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .footer__legal-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* Bas footer */
+  .footer__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem 0;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .footer__bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+
+  .footer__copyright {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* Slogan doré italique */
+  .footer__slogan {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--gold-light);
+    opacity: 0.8;
+  }
+</style>

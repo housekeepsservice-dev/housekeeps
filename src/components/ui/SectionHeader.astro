@@ -1,0 +1,57 @@
+---
+/* En-tête de section réutilisable */
+export interface Props {
+  label: string;
+  title: string;
+  centered?: boolean;
+  light?: boolean;
+}
+
+const { label, title, centered = false, light = false } = Astro.props;
+---
+
+<div class:list={['section-header', { 'section-header--centered': centered, 'section-header--light': light }]}>
+  <span class="section-header__label">{label}</span>
+  <h2 class="section-header__title" set:html={title} />
+</div>
+
+<style>
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  .section-header--centered {
+    text-align: center;
+  }
+
+  .section-header__label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  /* Label or clair sur fond sombre */
+  .section-header--light .section-header__label {
+    color: var(--gold-light);
+  }
+
+  .section-header__title {
+    font-family: var(--font-heading);
+    color: var(--navy);
+  }
+
+  .section-header--light .section-header__title {
+    color: #fff;
+  }
+
+  /* Style pour l'italique doré dans les titres */
+  :global(.section-header__title em) {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+</style>

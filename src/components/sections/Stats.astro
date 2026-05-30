@@ -1,0 +1,105 @@
+---
+/* Section statistiques — grille 4 colonnes avec séparateurs */
+const stats = [
+  { value: '50+', unit: 'biens', label: 'gérés sur la côte' },
+  { value: '94', unit: '%', label: 'taux d\'occupation' },
+  { value: '4.9', unit: '★', label: 'note moyenne voyageurs' },
+  { value: '3', unit: 'ans', label: 'd\'expérience locale' },
+];
+---
+
+<section class="stats" aria-label="Nos chiffres clés">
+  <div class="container">
+    <div class="stats__grid">
+      {stats.map((stat, i) => (
+        <div class="stats__item">
+          <div class="stats__number">
+            <span class="stats__value">{stat.value}</span>
+            <span class="stats__unit">{stat.unit}</span>
+          </div>
+          <p class="stats__label">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats {
+    background-color: var(--sand-mid);
+    padding: 4rem 0;
+    border-top: 1px solid var(--outline-subtle);
+    border-bottom: 1px solid var(--outline-subtle);
+  }
+
+  .stats__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  @media (min-width: 768px) {
+    .stats__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .stats__item {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-right: 1px solid var(--outline-subtle);
+    border-bottom: 1px solid var(--outline-subtle);
+  }
+
+  /* Suppression des bordures superflues */
+  .stats__item:nth-child(2n) {
+    border-right: none;
+  }
+
+  .stats__item:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  @media (min-width: 768px) {
+    .stats__item:nth-child(2n) {
+      border-right: 1px solid var(--outline-subtle);
+    }
+    .stats__item:last-child {
+      border-right: none;
+    }
+    .stats__item {
+      border-bottom: none;
+    }
+  }
+
+  .stats__number {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Chiffre en Libre Caslon navy */
+  .stats__value {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  /* Unité en or */
+  .stats__unit {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stats__label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+</style>

@@ -1,0 +1,138 @@
+---
+/* Section comment ça marche — 3 étapes, fond sand-mid */
+import SectionHeader from '../ui/SectionHeader.astro';
+
+const steps = [
+  {
+    number: '01',
+    title: 'Premier contact',
+    desc: 'Échangeons pour comprendre votre bien et définir la formule adaptée à vos besoins.',
+  },
+  {
+    number: '02',
+    title: 'Prise en charge',
+    desc: 'Annonce, photos, calendrier et optimisation de vos revenus locatifs. Nous gérons tout.',
+  },
+  {
+    number: '03',
+    title: 'Vous profitez',
+    desc: 'Rapport mensuel et revenus pendant que nous veillons sur votre bien en toute sérénité.',
+  },
+];
+---
+
+<section class="hiw" aria-labelledby="hiw-title">
+  <div class="container">
+    <SectionHeader
+      label="Notre méthode"
+      title="Comment ça fonctionne"
+      centered={true}
+    />
+
+    <div class="hiw__steps">
+      {steps.map((step, i) => (
+        <div class="hiw__step">
+          <!-- Numéro cerclé -->
+          <div class="hiw__number" aria-hidden="true">{step.number}</div>
+
+          <!-- Ligne de connexion (desktop uniquement) -->
+          {i < steps.length - 1 && (
+            <div class="hiw__connector" aria-hidden="true" />
+          )}
+
+          <div class="hiw__content">
+            <h3 class="hiw__title">{step.title}</h3>
+            <p class="hiw__desc">{step.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hiw {
+    background-color: var(--sand-mid);
+    padding: var(--section-pad);
+  }
+
+  .hiw__steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    position: relative;
+  }
+
+  @media (min-width: 768px) {
+    .hiw__steps {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+  }
+
+  .hiw__step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 1.5rem;
+  }
+
+  /* Numéro cerclé or */
+  .hiw__number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+    background-color: var(--sand-mid);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Ligne dorée reliant les étapes (desktop) */
+  .hiw__connector {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .hiw__connector {
+      display: block;
+      position: absolute;
+      top: 1.625rem; /* centre vertical du cercle */
+      left: calc(50% + 1.625rem); /* après le cercle */
+      width: calc(100% - 1.625rem);
+      height: 1px;
+      background: linear-gradient(to right, var(--gold-mid), var(--gold-mid));
+      opacity: 0.4;
+    }
+  }
+
+  .hiw__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .hiw__title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--navy);
+  }
+
+  .hiw__desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    max-width: 26ch;
+    margin-inline: auto;
+  }
+</style>

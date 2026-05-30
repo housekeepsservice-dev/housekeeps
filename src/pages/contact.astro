@@ -1,0 +1,153 @@
+---
+/* Page contact */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import ContactSection from '../components/sections/ContactSection.astro';
+---
+
+<BaseLayout
+  title="Contactez-nous — House Keeps"
+  description="Parlez-nous de votre bien. Réponse sous 24h. Conciergerie RBNB à Bordeaux, Bassin d'Arcachon et Lacanau."
+>
+  <Header />
+  <main id="main-content">
+
+    <!-- Hero mini -->
+    <section class="page-hero" aria-label="En-tête de page">
+      <div class="container">
+        <span class="page-hero__eyebrow">Parlons de votre bien</span>
+        <h1 class="page-hero__title">Contactez-nous</h1>
+        <p class="page-hero__desc">
+          Réponse garantie sous 24h. Échangeons pour découvrir la formule qui vous correspond.
+        </p>
+      </div>
+    </section>
+
+    <!-- Formulaire de contact -->
+    <ContactSection />
+
+    <!-- Carte Google Maps placeholder -->
+    <section class="contact-map" aria-label="Zone d'intervention">
+      <div class="container">
+        <h2 class="contact-map__title">Nos zones d'intervention</h2>
+        <div class="contact-map__map" aria-label="Carte de la zone Bordeaux – Bassin d'Arcachon – Lacanau">
+          <span>Carte interactive — Bordeaux · Bassin d'Arcachon · Lacanau</span>
+        </div>
+        <div class="contact-map__zones">
+          <div class="contact-map__zone">
+            <strong>Bordeaux</strong>
+            <span>et Métropole bordelaise</span>
+          </div>
+          <div class="contact-map__zone">
+            <strong>Bassin d'Arcachon</strong>
+            <span>Arcachon, Cap Ferret, La Teste, Lège</span>
+          </div>
+          <div class="contact-map__zone">
+            <strong>Lacanau</strong>
+            <span>Lacanau Océan, Lacanau Ville</span>
+          </div>
+          <div class="contact-map__zone">
+            <strong>Côte Atlantique</strong>
+            <span>Contacter pour d'autres zones</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background-color: var(--navy);
+    padding: 6rem 0 4rem;
+    text-align: center;
+  }
+
+  .page-hero__eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+
+  .page-hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .page-hero__desc {
+    color: rgba(255,255,255,0.6);
+    max-width: 46ch;
+    margin-inline: auto;
+  }
+
+  /* Carte */
+  .contact-map {
+    background-color: var(--sand-mid);
+    padding: var(--section-pad);
+  }
+
+  .contact-map__title {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .contact-map__map {
+    background-color: var(--sand-dark);
+    border: 1px solid var(--outline-subtle);
+    border-radius: var(--radius-md);
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .contact-map__zones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .contact-map__zones {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .contact-map__zone {
+    background-color: var(--sand);
+    border: 1px solid var(--outline-subtle);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .contact-map__zone strong {
+    font-size: 0.9rem;
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  .contact-map__zone span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+</style>
