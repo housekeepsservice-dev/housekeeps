@@ -68,18 +68,27 @@ const features = [
         </a>
       </div>
 
-      <!-- Colonne visuel placeholder -->
-      <div class="premium__visual" aria-hidden="true">
+      <!-- Colonne visuel -->
+      <div class="premium__visual">
         <div class="premium__photos">
-          <div class="premium__photo premium__photo--large">
-            <span>Photo villa</span>
-          </div>
-          <div class="premium__photo">
-            <span>Intérieur</span>
-          </div>
-          <div class="premium__photo">
-            <span>Vue mer</span>
-          </div>
+          <img
+            src="/images/premium-chambre.png"
+            alt="Chambre premium préparée avec vue mer — House Keeps"
+            class="premium__photo premium__photo--large"
+            loading="lazy"
+          />
+          <img
+            src="/images/premium-accueil.png"
+            alt="Accueil personnalisé des voyageurs — House Keeps"
+            class="premium__photo"
+            loading="lazy"
+          />
+          <img
+            src="/images/premium-dashboard.png"
+            alt="Gestion des réservations avec vue mer — House Keeps"
+            class="premium__photo"
+            loading="lazy"
+          />
         </div>
       </div>
 
@@ -172,20 +181,14 @@ const features = [
   }
 
   .premium__photo {
-    background-color: var(--sand-dark);
     border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 160px;
-    font-style: italic;
-    font-size: 0.8rem;
-    color: var(--text-muted);
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
   }
 
-  /* Première photo prend toute la largeur */
   .premium__photo--large {
     grid-column: 1 / -1;
-    min-height: 220px;
+    height: 220px;
   }
 </style>
